@@ -2,12 +2,15 @@ var express = require("express");
 var app = express();
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const path = require("path");
 
 const sqlite3 = require('sqlite3').verbose();
 const PATH = "../data/database.db";
 
+
+
 app.listen(3000)
-app.use(express.static("../frontend/"));
+app.use("/", express.static(path.join(__dirname, "static")));
 app.use(express.json())
 
 app.post('/enviar_mensagem', (req, res) => {
